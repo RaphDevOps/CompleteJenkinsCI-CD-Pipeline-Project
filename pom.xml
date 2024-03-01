@@ -29,11 +29,11 @@
     </site>
     <snapshotRepository>
             <id>nexus</id>
-            <url>http://172.31.10.0:8081/repository/maven-snapshots/</url>
+            <url>http://172.31.82.250:8081/repository/maven-snapshots/</url>          <!--Replace the Nexus Private IP in this line-->
         </snapshotRepository>
         <repository>
             <id>nexus</id>
-            <url>http://172.31.10.0:8081/repository/maven-releases/</url>
+            <url>http://172.31.82.250:8081/repository/maven-releases/</url>           <!--Replace the Nexus Private IP in this line-->
         </repository>
   </distributionManagement>
 
@@ -42,8 +42,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
 
@@ -173,6 +173,25 @@
           <artifactId>jetty-maven-plugin</artifactId>
           <version>8.0.0.M1</version>
         </plugin>
+		<plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version> <!-- use the latest version -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>
